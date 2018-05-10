@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.blumasc.RogueTwo.values.SETTINGS;
+import com.blumasc.RougeTwo.ReaderWriter.VariationsGetter;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -16,10 +20,14 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class Menu extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField txtRougetwo;
 
 	/**
 	 * Launch the application.
@@ -28,7 +36,7 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu frame = new Menu();
+					Menu frame = new Menu(args);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 					frame.setUndecorated(true);
 					frame.setVisible(true);
@@ -41,55 +49,63 @@ public class Menu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param variations 
 	 */
-	public Menu() {
+	public Menu(String[] variations) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JComboBox comboBox = new JComboBox();
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.5);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		contentPane.add(splitPane, BorderLayout.CENTER);
 		
-		JButton btnStartGame = new JButton("Spiel Starten");
+		JSplitPane splitPane_1 = new JSplitPane();
+		splitPane_1.setResizeWeight(0.5);
+		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setLeftComponent(splitPane_1);
 		
-		JButton btnEnd = new JButton("Beenden");
-		btnEnd.addActionListener(new ActionListener() {
+		txtRougetwo = new JTextField();
+		txtRougetwo.setEditable(false);
+		txtRougetwo.setFont(new Font("Power Red and Blue Intl", Font.BOLD, 40));
+		txtRougetwo.setHorizontalAlignment(SwingConstants.CENTER);
+		txtRougetwo.setText("RougeTwo");
+		splitPane_1.setLeftComponent(txtRougetwo);
+		txtRougetwo.setColumns(10);
+		
+		JComboBox<String> comboBox = new JComboBox<String>(variations);
+		comboBox.setFont(new Font("Power Red and Blue Intl", Font.BOLD, 20));
+		splitPane_1.setRightComponent(comboBox);
+		
+		JSplitPane splitPane_2 = new JSplitPane();
+		splitPane_2.setResizeWeight(0.5);
+		splitPane_2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setRightComponent(splitPane_2);
+		
+		JButton btnStart = new JButton("START");
+		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				SETTINGS.chosenPath=comboBox.getSelectedItem().toString();
+				
 			}
 		});
+		btnStart.setFont(new Font("Power Red and Blue Intl", Font.BOLD, 20));
+		splitPane_2.setLeftComponent(btnStart);
 		
-		JTextPane txtpnRougetwo = new JTextPane();
-		txtpnRougetwo.setText("RougeTwo");
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(186)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(158)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnEnd)
-								.addComponent(btnStartGame)
-								.addComponent(txtpnRougetwo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(173, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(21)
-					.addComponent(txtpnRougetwo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnStartGame)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEnd)
-					.addContainerGap(121, Short.MAX_VALUE))
-		);
-		contentPane.setLayout(gl_contentPane);
+		JButton btnNewButton = new JButton("BEENDEN");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CloseFrame();
+			}
+		});
+		btnNewButton.setFont(new Font("Power Red and Blue Intl", Font.BOLD, 20));
+		splitPane_2.setRightComponent(btnNewButton);
+	}
+	private void CloseFrame() {
+		super.dispose();
+		
 	}
 }
