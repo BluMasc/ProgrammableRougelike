@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.blumasc.RogueTwo.values.SETTINGS;
+import com.blumasc.RougeTwo.values.SETTINGS;
 import com.blumasc.RougeTwo.ReaderWriter.VariationsGetter;
 
 import javax.swing.GroupLayout;

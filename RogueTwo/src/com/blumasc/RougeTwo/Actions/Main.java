@@ -4,7 +4,7 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
-import com.blumasc.RogueTwo.values.SETTINGS;
+import com.blumasc.RougeTwo.values.SETTINGS;
 import com.blumasc.RougeTwo.Display.Menu;
 import com.blumasc.RougeTwo.ReaderWriter.VariationsGetter;
 

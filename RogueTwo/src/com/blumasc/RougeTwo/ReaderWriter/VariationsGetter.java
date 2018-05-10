@@ -3,7 +3,7 @@ package com.blumasc.RougeTwo.ReaderWriter;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.blumasc.RogueTwo.values.SETTINGS;
+import com.blumasc.RougeTwo.values.SETTINGS;
 
 public class VariationsGetter {
 	public static String[] get() 

@@ -1,4 +1,4 @@
-package com.blumasc.RogueTwo.values;
+package com.blumasc.RougeTwo.values;
 
 public class SETTINGS {
 	public static String gameName = "RougeTwo";
