@@ -88,8 +88,7 @@ public class Menu extends JFrame {
 		JButton btnStart = new JButton("START");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SETTINGS.chosenPath=comboBox.getSelectedItem().toString();
-				
+				SETTINGS.chosenPath=comboBox.getSelectedItem().toString();	
 			}
 		});
 		btnStart.setFont(new Font("Power Red and Blue Intl", Font.BOLD, 20));
